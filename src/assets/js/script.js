@@ -1,5 +1,5 @@
 function mudaTema(temaSelecionado) {
-    let url = "estilo-tema-" + temaSelecionado + ".css";
+    let url = "assets/css/estilo-tema-" + temaSelecionado + ".css";
     let linkTema = document.querySelector("#link-tema");
     linkTema.href = url;
 }
