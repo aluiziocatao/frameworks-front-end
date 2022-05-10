@@ -1,3 +1,4 @@
+import { NavigationStart, Router } from '@angular/router';
 import { ETipoAlerta } from './../../models/e-tipo-alerta';
 import { AlertaService } from './../../services/alerta.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,11 +12,16 @@ import { Alerta } from 'src/app/models/alerta';
 })
 export class AlertaComponent implements OnInit {
 
-  constructor( private servico: AlertaService) { }
+  constructor( private servico: AlertaService, private router: Router) { }
 
   ngOnInit(): void {
     this.servico.receberAlerta().subscribe(alerta => {
       this.exibeAlerta(alerta);
+    });
+    this.router.events.subscribe((evento) => {
+      if(evento instanceof NavigationStart){
+        this.fechaAlerta();
+      }
     })
   }
 
@@ -29,7 +35,7 @@ export class AlertaComponent implements OnInit {
     }
   }
 
-  fechaAlerta(): void{
+  fechaAlerta(): void {
     const elementoAlerta = document.querySelector<HTMLElement>('div.alerta');
     if(elementoAlerta){
       elementoAlerta.classList.remove(ETipoAlerta.ERRO, ETipoAlerta.SUCESSO);
