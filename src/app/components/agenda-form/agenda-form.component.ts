@@ -10,7 +10,8 @@ import { Atendimento } from './../../models/atendimento';
 import { IComponentForm } from './../i-component-form';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-agenda-form',
@@ -23,6 +24,7 @@ export class AgendaFormComponent implements OnInit, IComponentForm<Atendimento> 
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private servico: AtendimentoService,
     private servicoProfissional: ProfissionalService,
     private servicoConvenio: ConvenioService,
@@ -37,6 +39,27 @@ export class AgendaFormComponent implements OnInit, IComponentForm<Atendimento> 
 
   submit(form: NgForm): void {
 
+    let data = new Date(this.registro.data);
+    data = new Date(data.getTime() + data.getTimezoneOffset() * 60 * 1000);
+
+    let registroModificado = Object.assign({}, this.registro);
+    registroModificado.data = data.toISOString();
+
+    if(this.registro.id){
+      //PUT
+      this.servico.update(registroModificado).subscribe({
+        complete: () => {
+          this.router.navigate(["/agenda"]);
+        }
+      });
+    }else{
+      //POST
+      this.servico.insert(registroModificado).subscribe({
+        complete: () => {
+          form.resetForm();
+        }
+      });
+    }
   }
 
   ngOnInit(): void {
