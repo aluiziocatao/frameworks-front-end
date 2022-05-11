@@ -1,3 +1,4 @@
+import { AlertaService } from './../../services/alerta.service';
 import { IComponentList } from './../i-component-list';
 import { Component, OnInit } from '@angular/core';
 import { Atendimento } from 'src/app/models/atendimento';
@@ -11,7 +12,7 @@ import { AtendimentoService } from 'src/app/services/atendimento.service';
 })
 export class AtendimentoListComponent implements OnInit, IComponentList<Atendimento>{
 
-  constructor( private servico: AtendimentoService ) { }
+  constructor( private servico: AtendimentoService, private servicoAlerta: AlertaService ) { }
 
   registros: Atendimento[] = Array<Atendimento>();
 
@@ -34,6 +35,7 @@ export class AtendimentoListComponent implements OnInit, IComponentList<Atendime
       this.servico.updateStatus(id).subscribe({
         complete: () => {
           this.get();
+          this.servicoAlerta.enviarAlertaSucesso();
         }
       })
     }

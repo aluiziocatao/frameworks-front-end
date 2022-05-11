@@ -1,3 +1,4 @@
+import { AlertaService } from './../../services/alerta.service';
 import { Utils } from './../../utils/utils';
 import { PacienteService } from './../../services/paciente.service';
 import { ConvenioService } from './../../services/convenio.service';
@@ -25,6 +26,7 @@ export class AgendaFormComponent implements OnInit, IComponentForm<Atendimento> 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private servicoAlerta: AlertaService,
     private servico: AtendimentoService,
     private servicoProfissional: ProfissionalService,
     private servicoConvenio: ConvenioService,
@@ -50,6 +52,7 @@ export class AgendaFormComponent implements OnInit, IComponentForm<Atendimento> 
       this.servico.update(registroModificado).subscribe({
         complete: () => {
           this.router.navigate(["/agenda"]);
+          this.servicoAlerta.enviarAlertaSucesso();
         }
       });
     }else{
@@ -57,6 +60,7 @@ export class AgendaFormComponent implements OnInit, IComponentForm<Atendimento> 
       this.servico.insert(registroModificado).subscribe({
         complete: () => {
           form.resetForm();
+          this.servicoAlerta.enviarAlertaSucesso();
         }
       });
     }

@@ -10,8 +10,9 @@ import { AgendaListComponent } from './components/agenda-list/agenda-list.compon
 import { AgendaFormComponent } from './components/agenda-form/agenda-form.component';
 import { AtendimentoListComponent } from './components/atendimento-list/atendimento-list.component';
 import { BarraComandosComponent } from './components/barra-comandos/barra-comandos.component';
-import { UsuarioListComponent } from './components/usuario-list/usuario-list.component';
 import { AlertaComponent } from './components/alerta/alerta.component';
+import { LoginComponent } from './components/login/login.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,9 @@ import { AlertaComponent } from './components/alerta/alerta.component';
     AgendaFormComponent,
     AtendimentoListComponent,
     BarraComandosComponent,
-    UsuarioListComponent,
-    AlertaComponent
+    AlertaComponent,
+    LoginComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,
