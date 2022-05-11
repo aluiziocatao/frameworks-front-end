@@ -1,3 +1,4 @@
+import { RequisicaoInterceptor } from './interceptors/requisicao.interceptor';
 import { ErroInterceptor } from './interceptors/erro.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,7 +33,8 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErroInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErroInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: RequisicaoInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
