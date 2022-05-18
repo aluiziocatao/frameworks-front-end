@@ -19,4 +19,5 @@ window.onload = () => {
             localStorage.setItem("tema", temaSelecionado);
         }
     });
+
 }

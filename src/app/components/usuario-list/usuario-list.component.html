@@ -1,0 +1,31 @@
+<app-barra-comandos (eventoBusca)="get($event)"></app-barra-comandos>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Usuário</th>
+            <th>Ativo</th>
+            <th>Papel</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of registros">
+            <td class="fit">{{ r.id }}</td>
+            <td>{{ r.nomeCompleto }}</td>
+            <td>{{ r.nomeUsuario }}</td>
+            <td>{{ r.ativo }}</td>
+            <td>{{ r.papel }}</td>
+            <td>
+                <button type="button">Editar</button>
+                <button type="button" class="excluir" disabled>Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6">Total de registros: {{ registros?.length }}</td>
+        </tr>
+    </tfoot>
+</table>

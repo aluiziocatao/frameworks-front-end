@@ -1,20 +1,17 @@
-import { LoginService } from './../../services/login.service';
-import { NgForm } from '@angular/forms';
-import { Usuario } from './../../models/usuario';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Usuario } from 'src/app/models/usuario';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styles: [
-
   ]
 })
 export class LoginComponent implements OnInit {
 
-  constructor(
-    private servico: LoginService
-  ) { }
+  constructor(private servico: LoginService) { }
 
   usuario: Usuario = <Usuario>{};
 

@@ -12,8 +12,8 @@ export class BarraComandosComponent implements OnInit {
 
   @Output() eventoBusca = new EventEmitter();
 
-  busca(termoBusca: string){
-    this.eventoBusca.emit(termoBusca)
+  busca(termoBusca : string){
+    this.eventoBusca.emit(termoBusca);
   }
 
   ngOnInit(): void {

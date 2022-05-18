@@ -1,6 +1,6 @@
+import { Component } from '@angular/core';
 import { Usuario } from './models/usuario';
 import { LoginService } from './services/login.service';
-import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +9,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor(
-    private servico: LoginService
-  ){ }
+  constructor(private servico: LoginService){}
 
   title = 'SGCM';
 
-  logout(): void {
+  logout(): void{
     this.servico.logout();
   }
 
-  getUsuarioAutenticado(): Usuario {
+  getUsuarioAutenticado(): Usuario{
     return this.servico.getUsuario();
   }
 

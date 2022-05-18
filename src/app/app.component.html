@@ -1,38 +1,38 @@
 <header>
   <div id="logo">
-      <img src="../assets/imagens/logo.png" alt="Logo SGCM">
-      <span>SGCM</span>
+    <img src="assets/imagens/logo.png" alt="Logo SGCM">
+    <span>SGCM</span>
   </div>
   <div id="usuarioInfo" [hidden]="!isAutenticado()">
-      <span>Usuário: {{ getUsuarioAutenticado()?.nomeCompleto }} ({{ getUsuarioAutenticado()?.nomeUsuario }})</span>
-      <span>Papel: {{ getUsuarioAutenticado()?.papel }}</span>
-      <select id="tema">
-          <option value="">Escolha um tema</option>
-          <option value="azul">Azul</option>
-          <option value="verde">Verde</option>
-      </select>
-      <a class="botao" (click)="logout()">Logout</a>
+    <span>Usuário: {{ getUsuarioAutenticado()?.nomeCompleto }} ({{ getUsuarioAutenticado()?.nomeUsuario }})</span>
+    <span>Papel: {{ getUsuarioAutenticado()?.papel }}</span>
+    <select id="tema">
+      <option value="">Escolha um tema</option>
+      <option value="azul">Azul</option>
+      <option value="verde">Verde</option>
+    </select>
+    <a class="botao" (click)="logout()">Logout</a>
   </div>
 </header>
 
 <nav *ngIf="isAutenticado()">
   <ul>
-      <li><a routerLink="/agenda">Agenda</a></li>
-      <li><a routerLink="/atendimento">Atendimento</a></li>
-      <li><a routerLink="/pacientes">Pacientes</a></li>
-      <li><a routerLink="/profissionais">Profissionais</a></li>
-      <li><a routerLink="/convenios">Convênios</a></li>
-      <li id="dropdown">
-          <a href="javascript:void(0)">
-              Configurações
-              <i>&#9660;</i>
-          </a>
-          <div id="dropdown_conteudo">
-              <a routerLink="/config/unidades">Unidades</a>
-              <a routerLink="/config/especialidades">Especialidades</a>
-              <a routerLink="/config/usuarios">Usuários</a>
-          </div>
-      </li>
+    <li><a routerLink="/agenda">Agenda</a></li>
+    <li><a routerLink="/atendimento">Atendimento</a></li>
+    <li><a routerLink="/pacientes">Pacientes</a></li>
+    <li><a routerLink="/profissionais">Profissionais</a></li>
+    <li><a routerLink="/convenio">Convênios</a></li>
+    <li id="dropdown">
+      <a href="javascript:void(0)">
+        Configurações
+        <i>&#9660;</i>
+      </a>
+      <div id="dropdown_conteudo">
+        <a routerLink="/config/unidades">Unidades</a>
+        <a routerLink="/config/especialidades">Especialidades</a>
+        <a routerLink="/config/usuarios">Usuários</a>
+      </div>
+    </li>
   </ul>
 </nav>
 

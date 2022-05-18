@@ -1,13 +1,13 @@
 export interface Paciente {
-  id: number;
-  cep: string;
-  cidade: string;
-  dataNascimento: string;
-  email: string;
-  endereco: string;
-  estado: string;
-  grupoSanguineo: string;
-  nome: string;
-  sexo:  string;
-  telefone: string;
+    id: number;
+    nome: string;
+    email: string;
+    telefone: string;
+    dataNascimento: string;
+    grupoSanguineo: string;
+    sexo: string;
+    endereco: string;
+    cep: string;
+    cidade: string;
+    estado: string;
 }

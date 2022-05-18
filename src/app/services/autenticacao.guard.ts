@@ -1,17 +1,16 @@
-import { LoginService } from './login.service';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from 'rxjs';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticacaoGuard implements CanActivate {
 
-  constructor(
-    private servico: LoginService
-  ){}
+  constructor(private servico: LoginService) {}
 
-  canActivate(route: ActivatedRouteSnapshot): boolean  {
+  canActivate(route: ActivatedRouteSnapshot): boolean {
     const autenticado = this.servico.verificaLogin();
     if(autenticado){
       const papelUsuario = this.servico.getPapel();
@@ -19,9 +18,9 @@ export class AutenticacaoGuard implements CanActivate {
       if(papelExigido && papelUsuario != papelExigido){
         return false;
       }
-        return true;
+      return true;
     }
     return false;
   }
-
+  
 }

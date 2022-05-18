@@ -1,5 +1,3 @@
-import { RequisicaoInterceptor } from './interceptors/requisicao.interceptor';
-import { ErroInterceptor } from './interceptors/erro.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
@@ -11,9 +9,18 @@ import { AgendaListComponent } from './components/agenda-list/agenda-list.compon
 import { AgendaFormComponent } from './components/agenda-form/agenda-form.component';
 import { AtendimentoListComponent } from './components/atendimento-list/atendimento-list.component';
 import { BarraComandosComponent } from './components/barra-comandos/barra-comandos.component';
+import { ConvenioFormComponent } from './components/convenio-form/convenio-form.component';
+import { ConvenioListComponent } from './components/convenio-list/convenio-list.component';
+import { ErroInterceptor } from './interceptors/erro.interceptor';
 import { AlertaComponent } from './components/alerta/alerta.component';
+import { EspecialidadeFormComponent } from './components/especialidade-form/especialidade-form.component';
+import { EspecialidadeListComponent } from './components/especialidade-list/especialidade-list.component';
+import { UnidadeListComponent } from './components/unidade-list/unidade-list.component';
+import { UnidadeFormComponent } from './components/unidade-form/unidade-form.component';
 import { LoginComponent } from './components/login/login.component';
-import { UsuarioComponent } from './components/usuario/usuario.component';
+import { RequisicaoInterceptor } from './interceptors/requisicao.interceptor';
+import { ProfissionalSelecaoComponent } from './components/profissional-selecao/profissional-selecao.component';
+import { UsuarioListComponent } from './components/usuario-list/usuario-list.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +29,21 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     AgendaFormComponent,
     AtendimentoListComponent,
     BarraComandosComponent,
+    ConvenioFormComponent,
+    ConvenioListComponent,
     AlertaComponent,
+    EspecialidadeFormComponent,
+    EspecialidadeListComponent,
+    UnidadeListComponent,
+    UnidadeFormComponent,
     LoginComponent,
-    UsuarioComponent
-  ],
+    ProfissionalSelecaoComponent,
+    UsuarioListComponent,
+    ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule
   ],
   providers: [

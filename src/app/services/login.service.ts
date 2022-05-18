@@ -1,38 +1,36 @@
-import { Router } from '@angular/router';
-import { environment } from './../../environments/environment';
-import { Usuario } from './../models/usuario';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Usuario } from 'src/app/models/usuario';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(
-    private http: HttpClient,
-    private router: Router
-  ) { }
+  constructor(private http: HttpClient,
+              private router: Router
+            ) { }
 
   private usuario: Usuario = <Usuario>{};
   private autenticado = false;
 
-  isAutenticado(): boolean {
+  isAutenticado(): boolean{
     return this.autenticado;
   }
 
-  getUsuario(): Usuario {
+  getUsuario(): Usuario{
     return this.usuario;
   }
 
-  getPapel(): string {
+  getPapel(): string{
     return this.usuario.papel;
   }
 
-  verificaLogin(): boolean {
+  verificaLogin(): boolean{
     if(!this.isAutenticado()){
       this.usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}');
-
       if(Object.keys(this.usuario).length > 0){
         this.autenticado = true;
       }else{
@@ -43,14 +41,17 @@ export class LoginService {
   }
 
   login(usuario: Usuario): void {
+
     this.usuario = usuario;
+
     const credenciaisCodificadas = btoa(usuario.nomeUsuario + ':' + usuario.senha);
     const opcoesHttp = {
       headers: new HttpHeaders({
         'Authorization': 'Basic ' + credenciaisCodificadas
       })
     }
-    let url = environment.apiUrl + '/user_info/';
+
+    let url = environment.apiUrl+'/user_info/';
     this.http.get<Usuario>(url, opcoesHttp).subscribe({
       next: (usuario: Usuario) => {
         if(usuario){
@@ -60,11 +61,12 @@ export class LoginService {
           this.router.navigate(['/']);
         }
       }
-    });
+    })
+
   }
 
   logout(): void {
-    let url = environment.apiUrl + '/logout';
+    let url = environment.apiUrl+'/logout';
     this.http.get(url).subscribe({
       complete: () => {
         this.autenticado = false;
@@ -74,4 +76,7 @@ export class LoginService {
       }
     })
   }
+
 }
+
+

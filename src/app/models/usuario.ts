@@ -1,8 +1,8 @@
 export interface Usuario {
-  id: number;
-  ativo: boolean;
-  nomeCompleto: string;
-  nomeUsuario: string;
-  papel: string;
-  senha: string;
+    id: number;
+    nomeCompleto: string;
+    nomeUsuario: string;
+    senha: string;
+    ativo: boolean;
+    papel: string;
 }

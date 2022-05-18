@@ -1,23 +1,23 @@
-import { Profissional } from './../models/profissional';
-import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ICrudService } from './i-crud-service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Profissional } from '../models/profissional';
+import { ICrudService } from './i-crud-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfissionalService implements ICrudService<Profissional>{
 
-  constructor( private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
   apiUrl: string = environment.apiUrl + '/profissional/';
 
   get(termoBusca?: string): Observable<Profissional[]> {
     let url = this.apiUrl;
     if(termoBusca){
-      url += 'busca/' + termoBusca;
+      url += 'busca/'+termoBusca;
     }
     return this.http.get<Profissional[]>(url);
   }
@@ -38,5 +38,10 @@ export class ProfissionalService implements ICrudService<Profissional>{
   delete(id: number): Observable<void> {
     let url = this.apiUrl + id;
     return this.http.delete<void>(url);
+  }
+
+  updateStatus(id: number): Observable<Profissional>{
+    let url = this.apiUrl + 'status/' + id;
+    return this.http.put<Profissional>(url, null);
   }
 }

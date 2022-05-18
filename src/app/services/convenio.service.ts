@@ -1,23 +1,23 @@
-import { Convenio } from './../models/convenio';
-import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ICrudService } from './i-crud-service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Convenio } from '../models/convenio';
+import { ICrudService } from './i-crud-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConvenioService implements ICrudService<Convenio>{
 
-  constructor( private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
   apiUrl: string = environment.apiUrl + '/convenio/';
 
   get(termoBusca?: string): Observable<Convenio[]> {
     let url = this.apiUrl;
     if(termoBusca){
-      url += 'busca/' + termoBusca;
+      url += 'busca/'+termoBusca;
     }
     return this.http.get<Convenio[]>(url);
   }
@@ -38,5 +38,10 @@ export class ConvenioService implements ICrudService<Convenio>{
   delete(id: number): Observable<void> {
     let url = this.apiUrl + id;
     return this.http.delete<void>(url);
+  }
+
+  updateStatus(id: number): Observable<Convenio>{
+    let url = this.apiUrl + 'status/' + id;
+    return this.http.put<Convenio>(url, null);
   }
 }
